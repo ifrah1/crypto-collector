@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 
@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # import models
 from .models import Crypto
-
+from .forms import PurchaseForm
 
 # Create your views here.
 
@@ -23,7 +23,21 @@ def cryptos_index(request):
 
 def cryptos_detail(request, crypto_id):
     crypto = Crypto.objects.get(id=crypto_id)
-    return render(request, 'cryptos/detail.html', { 'crypto': crypto })
+    # instantiate FeedingForm to be rendered in the template
+    purchase_form = PurchaseForm()
+    return render(request, 'cryptos/detail.html', { 'crypto': crypto, 'purchase_form':purchase_form })
+
+def add_purchase(request, crypto_id):
+    # create the ModelForm using the data in request.POST
+    form = PurchaseForm(request.POST)
+    # validate the form
+    if form.is_valid():
+        # don't save the form to the db until it
+        # has the cat_id assigned
+        new_purchase = form.save(commit=False)
+        new_purchase.crypto_id = crypto_id
+        new_purchase.save()
+    return redirect('detail', crypto_id=crypto_id)
 
 class CryptoCreate(CreateView):
     model = Crypto
