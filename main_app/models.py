@@ -15,3 +15,17 @@ class Crypto(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'crypto_id': self.id})
+
+
+# purchase model
+class Purchase(models.Model):
+    date = models.DateField('Purchase Date')
+    purchase_price = models.IntegerField(default=0)
+    total_amount = models.IntegerField(default=0)
+
+    # Create a crypto_id FK
+    crypto = models.ForeignKey(Crypto, on_delete=models.CASCADE)
+
+    def __str__(self):
+        # Nice method for obtaining the friendly value of a Field.choice
+        return f"{self.get_purchase_display()} on {self.date}"
