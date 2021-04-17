@@ -33,7 +33,7 @@ def add_purchase(request, crypto_id):
     # validate the form
     if form.is_valid():
         # don't save the form to the db until it
-        # has the cat_id assigned
+        # has the crypto_id assigned
         new_purchase = form.save(commit=False)
         new_purchase.crypto_id = crypto_id
         new_purchase.save()
