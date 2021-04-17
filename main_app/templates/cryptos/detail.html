@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Crypto Details</h1>
+
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ crypto.name }}</span>
+        <p>Price: {{ crypto.price }}</p>
+        <p>Description: {{ crypto.description }}</p>
+        <p>Amount: {{ crypto.amount }}</p>
+    </div>
+</div>
+
+{% endblock %}
