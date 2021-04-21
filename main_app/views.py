@@ -68,7 +68,7 @@ def feelings_index(request):
     return render(request, 'feeling/index.html', context)
 
 
-def feeling_detail(request, toy_id):
+def feeling_detail(request, feeling_id):
     feeling = Feelings.objects.get(id=feeling_id)
     context = {
         'feeling': feeling
@@ -89,6 +89,6 @@ class Delete_feeling(DeleteView):
     success_url = '/feelings/' 
 
 def assoc_feeling(request, crypto_id, feeling_id):
-  # Note that you can pass a feeling's id instead of the whole object
-  Crypto.objects.get(id=crypto_id).feelings.add(feeling_id)
-  return redirect('detail', crypto_id=crypto_id)
+    # Note that you can pass a feeling's id instead of the whole object
+    Crypto.objects.get(id=crypto_id).feelings.add(feeling_id)
+    return redirect('detail', crypto_id=crypto_id)

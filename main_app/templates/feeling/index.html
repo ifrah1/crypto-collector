@@ -1,9 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
 {% for feeling in feelings %}
 
 <div class="card">
     <a href="{% url 'feeling_detail' feeling.id %}">
         <div class="card-content">
-            <span class="card-title">{{ feeling.name }}</span>
+            <span class="card-title">{{ feeling.status }}</span>
             <p>Color: {{ feeling.color }}</p>
         </div>
     </a>
@@ -20,3 +23,5 @@ if there is no elements in our list will display no feelings
 </div>
 
 {% endfor %}
+
+{% endblock %}
