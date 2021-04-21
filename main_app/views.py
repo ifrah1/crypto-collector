@@ -23,9 +23,18 @@ def cryptos_index(request):
 
 def cryptos_detail(request, crypto_id):
     crypto = Crypto.objects.get(id=crypto_id)
+
+    # Get the feelings for crypto doesn't have
+    feelings_crypto_doesnt_have = Feelings.objects.exclude(id__in = crypto.feelings.all().values_list('id'))
+
     # instantiate FeedingForm to be rendered in the template
     purchase_form = PurchaseForm()
-    return render(request, 'cryptos/detail.html', { 'crypto': crypto, 'purchase_form':purchase_form })
+    return render(request, 'cryptos/detail.html', { 
+        'crypto': crypto, 
+        'purchase_form':purchase_form,
+        # Add the feelings to be displayed
+        'feelings': feelings_crypto_doesnt_have
+        })
 
 def add_purchase(request, crypto_id):
     # create the ModelForm using the data in request.POST
