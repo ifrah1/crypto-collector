@@ -5,7 +5,7 @@ from django.http import HttpResponse
 # import class-based-views
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # import models
-from .models import Crypto
+from .models import Crypto, Feelings
 from .forms import PurchaseForm
 
 # Create your views here.
@@ -50,3 +50,31 @@ class CryptoUpdate(UpdateView):
 class CryptoDelete(DeleteView):
     model = Crypto
     success_url = '/cryptos/'
+
+# Feelings views
+def feelings_index(request):
+    feelings = Feelings.objects.all()
+    context = {'feelings': feelings}
+    
+    return render(request, 'feeling/index.html', context)
+
+
+def feeling_detail(request, toy_id):
+    feeling = Feelings.objects.get(id=feeling_id)
+    context = {
+        'feeling': feeling
+    }
+    return render(request, 'feeling/detail.html', context)
+    
+class Create_feeling(CreateView):
+    model = Feelings
+    fields = '__all__'
+
+
+class Update_feeling(UpdateView):
+    model = Feelings
+    fields = ['color']
+
+class Delete_feeling(DeleteView):
+    model = Feelings
+    success_url = '/feelings/' 

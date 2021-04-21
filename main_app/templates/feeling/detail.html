@@ -1,0 +1,22 @@
+{% for feeling in feelings %}
+
+<div class="card">
+    <a href="{% url 'feeling_detail' feeling.id %}">
+        <div class="card-content">
+            <span class="card-title">{{ feeling.name }}</span>
+            <p>Color: {{ feeling.color }}</p>
+        </div>
+    </a>
+</div>
+{% comment %}
+if there is no elements in our list will display no feelings
+{% endcomment %}
+{% empty %}
+
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">No feelings</span>
+    </div>
+</div>
+
+{% endfor %}

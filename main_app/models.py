@@ -3,12 +3,27 @@ from django.db import models
 # Import the reverse function
 from django.urls import reverse
 
+class Feelings(models.Model):
+    status = models.CharField(max_length=10)
+    color = models.CharField(max_length=20)
+
+    # Other goodness such as 'def __str__():' below
+    def __str__(self):
+        return f'{self.status} {self.color}'
+
+    # Add this method
+    def get_absolute_url(self):
+        return reverse('feelings_detail', kwargs={'feelings_id': self.id})    
+
 # Create your models here.
 class Crypto(models.Model):
     name = models.CharField(max_length=100)
     price = models.IntegerField()
     description = models.TextField(max_length=250)
     amount = models.IntegerField()
+
+    # Add the M:M relationship
+    feelings = models.ManyToManyField(Feelings)
 
     def __str__(self):
         return self.name
