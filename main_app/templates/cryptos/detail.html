@@ -59,12 +59,12 @@
                     <span style="color: {{ feeling.color }}">{{ feeling.status }}</span>
                 </span>
             </div>
-            <div class="card-action">
-                <form action="" method="post">
+            <!-- <div class="card-action">
+                <form action="{% url 'remove_feeling' crypto.id feeling.id%}" method="put">
                     {% csrf_token %}
                     <button type="submit" class="btn red">Remove</button>
                 </form>
-            </div>
+            </div> -->
         </div>
 
         {% endfor %}

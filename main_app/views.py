@@ -92,3 +92,8 @@ def assoc_feeling(request, crypto_id, feeling_id):
     # Note that you can pass a feeling's id instead of the whole object
     Crypto.objects.get(id=crypto_id).feelings.add(feeling_id)
     return redirect('detail', crypto_id=crypto_id)
+
+# def remove_feeling(request, crypto_id, feeling_id):
+#     # Note that you can pass a feeling's id instead of the whole object
+#     Crypto.objects.get(id=crypto_id).feelings.remove(feeling_id)
+#     return redirect('detail', crypto_id=crypto_id)
