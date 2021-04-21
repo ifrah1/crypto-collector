@@ -16,6 +16,9 @@ urlpatterns = [
     # path for adding the purchase 
     path('cryptos/<int:crypto_id>/add_purchase/', views.add_purchase, name='add_purchase'),
 
+    # associate a feelings with a crypto (M:M)
+    path('cryptos/<int:crypto_id>/assoc_feelings/<int:feeling_id>/', views.assoc_feeling, name='assoc_feeling'),
+
     # feelings urls
     path('feelings/', views.feelings_index, name='all_feelings'),
     path('feelings/<int:feeling_id>/', views.feeling_detail, name='feeling_detail'),
