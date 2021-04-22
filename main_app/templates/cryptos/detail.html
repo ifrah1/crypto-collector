@@ -60,9 +60,9 @@
                 </span>
             </div>
             <div class="card-action">
-                <form action="" method="put">
+                <form action="{% url 'remove_feeling' crypto.id feeling.id %}" method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn red">Remove/not working</button>
+                    <button type="submit" class="btn red">Remove</button>
                 </form>
             </div>
         </div>

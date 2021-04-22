@@ -20,7 +20,7 @@ urlpatterns = [
     path('cryptos/<int:crypto_id>/assoc_feelings/<int:feeling_id>/', views.assoc_feeling, name='assoc_feeling'),
 
     # remove a feelings with a crypto (M:M)
-    # path('cryptos/<int:crypto_id>/remove_feelings/<int:feeling_id>/', views.assoc_feeling, name='remove_feeling'),
+    path('cryptos/<int:crypto_id>/remove_feeling/<int:feeling_id>/', views.remove_feeling, name='remove_feeling'),
 
     # feelings urls
     path('feelings/', views.feelings_index, name='all_feelings'),
